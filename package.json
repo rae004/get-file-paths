@@ -1,0 +1,24 @@
+{
+  "name": "@rae004/get-file-paths",
+  "version": "0.0.0",
+  "description": "A package to get all file paths in a given directory recursivly.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rae004/get-file-paths.git"
+  },
+  "keywords": [
+    "Files",
+    "Directories",
+    "Paths"
+  ],
+  "author": "Robert Engel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rae004/get-file-paths/issues"
+  },
+  "homepage": "https://github.com/rae004/get-file-paths#readme"
+}
