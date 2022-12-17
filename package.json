@@ -1,6 +1,6 @@
 {
   "name": "@rae004/get-file-paths",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A package to get all file paths in a given directory recursively.",
   "main": "src/index.ts",
   "scripts": {
@@ -24,6 +24,9 @@
     "url": "https://github.com/rae004/get-file-paths/issues"
   },
   "homepage": "https://github.com/rae004/get-file-paths#readme",
+  "publishConfig": {
+    "@rae004:registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.11.16",
