@@ -1,6 +1,6 @@
-import { GetRelativePathOptionsInterface } from '../main.interface';
 import { promises as fsp } from 'fs';
 import path from 'path';
+import { GetFilePathsOptions } from '../main.interface';
 
 /**
  * Returns a file path from a relative root within a full path
@@ -20,20 +20,28 @@ import path from 'path';
  */
 export const getRelativePath = (
     fullPath: string,
-    options: GetRelativePathOptionsInterface,
+    options: GetFilePathsOptions,
 ) => {
-    const stringStartPadding = options.removeLeadingSlash ? 1 : 0;
+    const stringStartPaddingLength = options.removeLeadingSlash ? 1 : 0;
+    const relativeRoot = options.relativeRoot ?? '';
+    const relativeRootLength = options.relativeRoot
+        ? options.relativeRoot.length
+        : 0;
+
+    const includeRelativeRoot = options?.includeRelativeRoot
+        ? -1
+        : relativeRootLength;
     return options.lastIndexOfRelativeRoot
         ? fullPath.substring(
-              fullPath.lastIndexOf(options.relativeRoot) +
-                  options.relativeRoot.length +
-                  stringStartPadding,
+              fullPath.lastIndexOf(relativeRoot) +
+                  includeRelativeRoot +
+                  stringStartPaddingLength,
               fullPath.length,
           )
         : fullPath.substring(
-              fullPath.indexOf(options.relativeRoot) +
-                  options.relativeRoot.length +
-                  stringStartPadding,
+              fullPath.indexOf(relativeRoot) +
+                  includeRelativeRoot +
+                  stringStartPaddingLength,
               fullPath.length,
           );
 };

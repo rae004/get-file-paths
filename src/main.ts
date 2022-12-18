@@ -1,4 +1,4 @@
-import { GetFilePathsInDirectoryInterface } from './main.interface';
+import { GetFilePathsOptions, GetFilePathsOutput } from './main.interface';
 import { getFilePathsGenerator, getRelativePath } from './lib/utilities';
 import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
 
@@ -11,13 +11,8 @@ import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
  */
 export const getFilePathsInDirectory = async (
     directoryPath: string,
-    options?: {
-        relativeRoot?: string;
-        excludes?: string[];
-        removeLeadingSlash?: boolean;
-        lastIndexOfRelativeRoot?: boolean;
-    },
-): Promise<GetFilePathsInDirectoryInterface[]> => {
+    options?: GetFilePathsOptions,
+): Promise<GetFilePathsOutput[]> => {
     const ourOptions = { ...GET_RELATIVE_PATH_DEFAULTS, ...options };
     const paths = [];
 
@@ -26,6 +21,7 @@ export const getFilePathsInDirectory = async (
         ourOptions.excludes,
     )) {
         const relativePath = getRelativePath(fullPath, { ...ourOptions });
+
         paths.push({
             fullPath,
             relativePath,
@@ -37,6 +33,7 @@ export const getFilePathsInDirectory = async (
 
 getFilePathsInDirectory('./', {
     relativeRoot: 'rae004',
+    includeRelativeRoot: true,
     removeLeadingSlash: true,
     lastIndexOfRelativeRoot: true,
 }).then((res) => console.log('our result: ', res));
