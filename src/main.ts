@@ -46,10 +46,7 @@ export const getFilePaths = async (
 
     return paths;
 };
-// todo remove test log before publishing release
-getFilePaths('./', {
-    relativeRoot: 'zib',
-    includeRelativeRoot: true,
-    removeLeadingSlash: false,
-    lastIndexOfRelativeRoot: false,
-}).then((res) => console.log('our result: ', res));
+// // todo remove test log before publishing release
+// getFilePaths('./', {
+//     relativeRoot: 'projects',
+// }).then((res) => console.log('our result: ', res));
