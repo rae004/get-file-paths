@@ -1,6 +1,7 @@
 export interface GetFilePathsOutput {
     fullPath: string;
     relativePath: string;
+    fileName: string;
 }
 
 export interface GetFilePathsOptions {

@@ -71,3 +71,11 @@ export const getFilePathsGenerator = async function* (
         }
     }
 };
+
+export const getFileName = (path: string, options: GetFilePathsOptions) => {
+    const stringStartPadding = options.removeLeadingSlash ? 1 : 0;
+    return path.substring(
+        path.lastIndexOf('/') + stringStartPadding,
+        path.length,
+    );
+};

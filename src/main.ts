@@ -1,5 +1,9 @@
 import { GetFilePathsOptions, GetFilePathsOutput } from './main.interface';
-import { getFilePathsGenerator, getRelativePath } from './lib/utilities';
+import {
+    getFileName,
+    getFilePathsGenerator,
+    getRelativePath,
+} from './lib/utilities';
 import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
 
 /**
@@ -13,27 +17,32 @@ export const getFilePathsInDirectory = async (
     directoryPath: string,
     options?: GetFilePathsOptions,
 ): Promise<GetFilePathsOutput[]> => {
-    const ourOptions = { ...GET_RELATIVE_PATH_DEFAULTS, ...options };
-    const paths = [];
+    const ourOptions: GetFilePathsOptions = {
+        ...GET_RELATIVE_PATH_DEFAULTS,
+        ...options,
+    };
+    const paths: GetFilePathsOutput[] = [];
 
     for await (const fullPath of getFilePathsGenerator(
         directoryPath,
         ourOptions.excludes,
     )) {
-        const relativePath = getRelativePath(fullPath, { ...ourOptions });
+        const relativePath = getRelativePath(fullPath, ourOptions);
+        const fileName = getFileName(fullPath, ourOptions);
 
         paths.push({
             fullPath,
             relativePath,
+            fileName,
         });
     }
 
     return paths;
 };
-
-getFilePathsInDirectory('./', {
-    relativeRoot: 'rae004',
-    includeRelativeRoot: true,
-    removeLeadingSlash: true,
-    lastIndexOfRelativeRoot: true,
-}).then((res) => console.log('our result: ', res));
+// // todo remove test log before publishing release
+// getFilePathsInDirectory('./', {
+//     relativeRoot: 'rae004',
+//     includeRelativeRoot: true,
+//     removeLeadingSlash: true,
+//     lastIndexOfRelativeRoot: true,
+// }).then((res) => console.log('our result: ', res));
