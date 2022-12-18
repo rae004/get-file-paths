@@ -60,9 +60,9 @@ const getRelativePath = (
  * @param excludes string array of directory or file names to exclude.
  */
 const getFilePathsGenerator = async function* (
-    dir: any,
+    dir: string,
     excludes: string[] = [],
-): any {
+): AsyncIterableIterator<string> {
     for (const dirent of await fsp.readdir(dir, { withFileTypes: true })) {
         const res = path.resolve(dir, dirent.name);
 
