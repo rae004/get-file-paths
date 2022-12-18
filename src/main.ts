@@ -1,25 +1,31 @@
 import { GetFilePathsInDirectoryInterface } from './main.interface';
-import { getFilePathsGenerator, getRelativePath } from './utilities';
+import { getFilePathsGenerator, getRelativePath } from './lib/utilities';
+import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
 
 /**
  * Take a directory path and return an array of objects with full & relative file paths for every file in that directory.
  * Recursive through child directories and except for directories or files listed in the excludes array.
  *
  * @param directoryPath
- * @param relativeRoot
+ * @param options
  */
 export const getFilePathsInDirectory = async (
     directoryPath: string,
-    relativeRoot: string,
+    options?: {
+        relativeRoot?: string;
+        excludes?: string[];
+        removeLeadingSlash?: boolean;
+        lastIndexOfRelativeRoot?: boolean;
+    },
 ): Promise<GetFilePathsInDirectoryInterface[]> => {
-    const excludes = ['node_modules/', 'dist/', 'build/', '.git/'];
+    const ourOptions = { ...GET_RELATIVE_PATH_DEFAULTS, ...options };
     const paths = [];
 
     for await (const fullPath of getFilePathsGenerator(
         directoryPath,
-        excludes,
+        ourOptions.excludes,
     )) {
-        const relativePath = getRelativePath(fullPath, relativeRoot);
+        const relativePath = getRelativePath(fullPath, { ...ourOptions });
         paths.push({
             fullPath,
             relativePath,
@@ -29,6 +35,8 @@ export const getFilePathsInDirectory = async (
     return paths;
 };
 
-getFilePathsInDirectory('./', 'rae004').then((res) =>
-    console.log('our result: ', res),
-);
+getFilePathsInDirectory('./', {
+    relativeRoot: 'rae004',
+    removeLeadingSlash: true,
+    lastIndexOfRelativeRoot: true,
+}).then((res) => console.log('our result: ', res));

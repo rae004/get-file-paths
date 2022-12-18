@@ -4,6 +4,7 @@ export interface GetFilePathsInDirectoryInterface {
 }
 
 export interface GetRelativePathOptionsInterface {
+    relativeRoot: string;
     removeLeadingSlash: boolean;
     lastIndexOfRelativeRoot: boolean;
 }

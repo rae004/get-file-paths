@@ -1,4 +1,4 @@
-import { GetRelativePathOptionsInterface } from './main.interface';
+import { GetRelativePathOptionsInterface } from '../main.interface';
 import { promises as fsp } from 'fs';
 import path from 'path';
 
@@ -16,28 +16,23 @@ import path from 'path';
  * *** with lastIndexOfRelativeRoot = false we would get <relativeRoot>/app/<relativeRoot>/forms/layouts/test-form-layout/public/index.html
  *
  * @param fullPath
- * @param relativeRoot
- * @param opts
+ * @param options
  */
 export const getRelativePath = (
     fullPath: string,
-    relativeRoot: string,
-    opts: GetRelativePathOptionsInterface = {
-        removeLeadingSlash: true,
-        lastIndexOfRelativeRoot: true,
-    },
+    options: GetRelativePathOptionsInterface,
 ) => {
-    const stringStartPadding = opts.removeLeadingSlash ? 1 : 0;
-    return opts.lastIndexOfRelativeRoot
+    const stringStartPadding = options.removeLeadingSlash ? 1 : 0;
+    return options.lastIndexOfRelativeRoot
         ? fullPath.substring(
-              fullPath.lastIndexOf(relativeRoot) +
-                  relativeRoot.length +
+              fullPath.lastIndexOf(options.relativeRoot) +
+                  options.relativeRoot.length +
                   stringStartPadding,
               fullPath.length,
           )
         : fullPath.substring(
-              fullPath.indexOf(relativeRoot) +
-                  relativeRoot.length +
+              fullPath.indexOf(options.relativeRoot) +
+                  options.relativeRoot.length +
                   stringStartPadding,
               fullPath.length,
           );
