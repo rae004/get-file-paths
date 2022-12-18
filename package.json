@@ -5,8 +5,7 @@
   "main": "main.js",
   "scripts": {
     "build": "rimraf ./build && yarn tsc",
-    "postbuild": "yarn copyreqfiles ",
-    "copyreqfiles": "cp -r ./package.json ./README.md ./LICENSE ./node_modules ./build/",
+    "postbuild": "cp -r ./package.json ./README.md ./LICENSE ./node_modules ./build/",
     "start": "yarn build && node build/index.js",
     "start:dev": "yarn nodemon",
     "test": "echo \"Warning: no test specified\" && exit 0",
