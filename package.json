@@ -1,11 +1,11 @@
 {
   "name": "@rae004/get-file-paths",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A package to get all file paths in a given directory recursively.",
-  "main": "src/main.ts",
+  "main": "main.js",
   "scripts": {
     "build": "rimraf ./build && yarn tsc",
-    "postbuild": "cp -r ./package.json ./README.md ./LICENSE ./node_modules ./build/ ",
+    "postbuild": "cp -r ./package.json ./README.md ./LICENSE ./node_modules ./build/",
     "start": "yarn build && node build/index.js",
     "start:dev": "yarn nodemon",
     "test": "echo \"Warning: no test specified\" && exit 0",
