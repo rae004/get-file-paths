@@ -22,7 +22,6 @@ export const getRelativePath = (
     fullPath: string,
     options: GetFilePathsOptions,
 ) => {
-    const stringStartPaddingLength = options.removeLeadingSlash ? 1 : 0;
     const relativeRoot = options.relativeRoot ?? '';
     const relativeRootLength = options.relativeRoot
         ? options.relativeRoot.length
@@ -31,17 +30,14 @@ export const getRelativePath = (
     const includeRelativeRoot = options?.includeRelativeRoot
         ? -1
         : relativeRootLength;
+
     return options.lastIndexOfRelativeRoot
         ? fullPath.substring(
-              fullPath.lastIndexOf(relativeRoot) +
-                  includeRelativeRoot +
-                  stringStartPaddingLength,
+              fullPath.lastIndexOf(relativeRoot) + includeRelativeRoot,
               fullPath.length,
           )
         : fullPath.substring(
-              fullPath.indexOf(relativeRoot) +
-                  includeRelativeRoot +
-                  stringStartPaddingLength,
+              fullPath.indexOf(relativeRoot) + includeRelativeRoot,
               fullPath.length,
           );
 };
@@ -72,10 +68,6 @@ export const getFilePathsGenerator = async function* (
     }
 };
 
-export const getFileName = (path: string, options: GetFilePathsOptions) => {
-    const stringStartPadding = options.removeLeadingSlash ? 1 : 0;
-    return path.substring(
-        path.lastIndexOf('/') + stringStartPadding,
-        path.length,
-    );
+export const getFileName = (path: string) => {
+    return path.substring(path.lastIndexOf('/'), path.length);
 };

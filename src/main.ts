@@ -13,7 +13,7 @@ import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
  * @param directoryPath
  * @param options
  */
-export const getFilePathsInDirectory = async (
+export const getFilePaths = async (
     directoryPath: string,
     options?: GetFilePathsOptions,
 ): Promise<GetFilePathsOutput[]> => {
@@ -27,22 +27,29 @@ export const getFilePathsInDirectory = async (
         directoryPath,
         ourOptions.excludes,
     )) {
-        const relativePath = getRelativePath(fullPath, ourOptions);
-        const fileName = getFileName(fullPath, ourOptions);
-
-        paths.push({
+        const relativePath = options?.relativeRoot
+            ? getRelativePath(fullPath, ourOptions)
+            : fullPath;
+        const fileName = getFileName(fullPath);
+        const fileObject: GetFilePathsOutput = {
             fullPath,
-            relativePath,
-            fileName,
-        });
+            relativePath: ourOptions.removeLeadingSlash
+                ? relativePath.substring(1, relativePath.length)
+                : relativePath,
+            fileName: ourOptions.removeLeadingSlash
+                ? fileName.substring(1, fileName.length)
+                : fileName,
+        };
+
+        paths.push(fileObject);
     }
 
     return paths;
 };
-// // todo remove test log before publishing release
-// getFilePathsInDirectory('./', {
-//     relativeRoot: 'rae004',
-//     includeRelativeRoot: true,
-//     removeLeadingSlash: true,
-//     lastIndexOfRelativeRoot: true,
-// }).then((res) => console.log('our result: ', res));
+// todo remove test log before publishing release
+getFilePaths('./', {
+    relativeRoot: 'zib',
+    includeRelativeRoot: true,
+    removeLeadingSlash: false,
+    lastIndexOfRelativeRoot: false,
+}).then((res) => console.log('our result: ', res));

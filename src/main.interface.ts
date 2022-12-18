@@ -6,7 +6,7 @@ export interface GetFilePathsOutput {
 
 export interface GetFilePathsOptions {
     relativeRoot?: string;
-    includeRelativeRoot: boolean;
+    includeRelativeRoot?: boolean;
     excludes?: string[];
     removeLeadingSlash?: boolean;
     lastIndexOfRelativeRoot?: boolean;
