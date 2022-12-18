@@ -8,8 +8,8 @@
     "start": "yarn build && node build/index.js",
     "start:dev": "yarn nodemon",
     "test": "echo \"Warning: no test specified\" && exit 0",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
-    "format": "eslint \"{src}/**/*.ts\" --fix"
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "eslint \"src/**/*.ts\" --fix"
   },
   "repository": {
     "type": "git",

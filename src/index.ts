@@ -1,5 +1,5 @@
 import { promises as fsp } from 'fs';
-import path from "path";
+import path from 'path';
 
 interface GetFilePathsInDirectoryInterface {
     fullPath: string;
@@ -32,25 +32,25 @@ const getRelativePath = (
     fullPath: string,
     relativeRoot: string,
     opts: GetRelativePathOptionsInterface = {
-    removeLeadingSlash: true,
-    lastIndexOfRelativeRoot: true,
-},
+        removeLeadingSlash: true,
+        lastIndexOfRelativeRoot: true,
+    },
 ) => {
     const stringStartPadding = opts.removeLeadingSlash ? 1 : 0;
     return opts.lastIndexOfRelativeRoot
         ? fullPath.substring(
-            fullPath.lastIndexOf(relativeRoot) +
-            relativeRoot.length +
-            stringStartPadding,
-            fullPath.length,
-        )
+              fullPath.lastIndexOf(relativeRoot) +
+                  relativeRoot.length +
+                  stringStartPadding,
+              fullPath.length,
+          )
         : fullPath.substring(
-            fullPath.indexOf(relativeRoot) +
-            relativeRoot.length +
-            stringStartPadding,
-            fullPath.length,
-        );
-}
+              fullPath.indexOf(relativeRoot) +
+                  relativeRoot.length +
+                  stringStartPadding,
+              fullPath.length,
+          );
+};
 
 /**
  * Generator function to loop through directories and return full file paths.
@@ -59,12 +59,14 @@ const getRelativePath = (
  * @param dir directory path to search.
  * @param excludes string array of directory or file names to exclude.
  */
-const getFilePathsGenerator = async function *(dir: any, excludes: string[] = []): any {
+const getFilePathsGenerator = async function* (
+    dir: any,
+    excludes: string[] = [],
+): any {
     for (const dirent of await fsp.readdir(dir, { withFileTypes: true })) {
         const res = path.resolve(dir, dirent.name);
 
         const isExcluded = excludes.map((exclude) => res.includes(exclude));
-
 
         if (!isExcluded.includes(true)) {
             if (dirent.isDirectory()) {
@@ -74,7 +76,7 @@ const getFilePathsGenerator = async function *(dir: any, excludes: string[] = []
             }
         }
     }
-}
+};
 
 /**
  * Take a directory path and return an array of objects with full & relative file paths for every file in that directory.
@@ -94,14 +96,16 @@ const getFilePathsInDirectory = async (
         directoryPath,
         excludes,
     )) {
-    const relativePath = getRelativePath(fullPath, relativeRoot);
-    paths.push({
-        fullPath,
-        relativePath,
-    });
-}
+        const relativePath = getRelativePath(fullPath, relativeRoot);
+        paths.push({
+            fullPath,
+            relativePath,
+        });
+    }
 
-return paths;
-}
+    return paths;
+};
 
-getFilePathsInDirectory('./', 'rae004').then((res) => console.log('our result: ', res));
+getFilePathsInDirectory('./', 'rae004').then((res) =>
+    console.log('our result: ', res),
+);
