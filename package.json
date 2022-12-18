@@ -1,6 +1,6 @@
 {
   "name": "@rae004/get-file-paths",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A package to get all file paths in a given directory recursively.",
   "main": "main.js",
   "scripts": {
