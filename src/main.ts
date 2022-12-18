@@ -1,15 +1,9 @@
 import { promises as fsp } from 'fs';
 import path from 'path';
-
-interface GetFilePathsInDirectoryInterface {
-    fullPath: string;
-    relativePath: string;
-}
-
-interface GetRelativePathOptionsInterface {
-    removeLeadingSlash: boolean;
-    lastIndexOfRelativeRoot: boolean;
-}
+import {
+    GetFilePathsInDirectoryInterface,
+    GetRelativePathOptionsInterface,
+} from './main.interface';
 
 /**
  * Returns a file path from a relative root within a full path
@@ -85,7 +79,7 @@ const getFilePathsGenerator = async function* (
  * @param directoryPath
  * @param relativeRoot
  */
-const getFilePathsInDirectory = async (
+export const getFilePathsInDirectory = async (
     directoryPath: string,
     relativeRoot: string,
 ): Promise<GetFilePathsInDirectoryInterface[]> => {
