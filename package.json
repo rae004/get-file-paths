@@ -9,7 +9,10 @@
     "start:dev": "yarn nodemon",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "eslint \"src/**/*.ts\"",
-    "format": "eslint \"src/**/*.ts\" --fix"
+    "format": "eslint \"src/**/*.ts\" --fix",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "repository": {
     "type": "git",
@@ -37,7 +40,9 @@
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
     "nodemon": "^2.0.20",
+    "pinst": "^3.0.0",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
