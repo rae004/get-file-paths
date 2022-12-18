@@ -5,6 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "rimraf ./build && yarn tsc",
+    "postbuild": "cp ./README.md ./LICENSE ./build/",
     "start": "yarn build && node build/index.js",
     "start:dev": "yarn nodemon",
     "test": "echo \"Warning: no test specified\" && exit 0",
@@ -13,6 +14,9 @@
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
+  },
+  "engines": {
+    "node": ">=10"
   },
   "repository": {
     "type": "git",
