@@ -1,5 +1,8 @@
 # Get File Paths
-[![npm Package](https://img.shields.io/npm/v/@rae004/get-file-paths.svg)](https://www.npmjs.org/package/@rae004/get-file-paths) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rae004/get-file-paths/blob/main/LICENSE) ![node](https://img.shields.io/node/v/@rae004/get-file-paths) 
+[![npm Package](https://img.shields.io/npm/v/@rae004/get-file-paths.svg)](https://www.npmjs.org/package/@rae004/get-file-paths) 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rae004/get-file-paths/blob/main/LICENSE) 
+![node](https://img.shields.io/node/v/@rae004/get-file-paths)
+![Release Workflow](https://github.com/rae004/get-file-paths/actions/workflows/release-package.yml/badge.svg)
 
 [//]: # (![Node.js CI]&#40;https://github.com/fpsqdb/zip-lib/workflows/Node.js%20CI/badge.svg&#41;)
 
@@ -20,7 +23,7 @@ import { getFilePaths } from '@rae004/get-file-paths';
 const paths = await getFilePaths('./')
 ```
 
-### output:
+#### output:
 ```
 [
   {
@@ -43,7 +46,7 @@ const paths = await getFilePaths('./', {
 })
 ```
 
-### output:
+#### output:
 ```
 [
   {
@@ -64,13 +67,39 @@ const paths = await getFilePaths('./', {
 })
 ```
 
-### output:
+#### output:
 ```
 [
   {
     fullPath: '/Users/rae004/projects/get-file-paths/package.json',
-    relativePath: 'get-file-paths/package.json',
+    relativePath: 'projects/get-file-paths/package.json',
     fileName: 'package.json'
   }
 ]
+```
+
+### include leading slash in relativePath & fileName
+```typescript
+import { getFilePaths } from '@rae004/get-file-paths';
+
+const paths = await getFilePaths('./', {
+    relativeRoot: 'projects', 
+    removeLeadingSlash: false
+})
+```
+
+#### output:
+```
+[
+  {
+    fullPath: '/Users/rae004/projects/get-file-paths/package.json',
+    relativePath: '/get-file-paths/package.json',
+    fileName: '/package.json'
+  },
+]
+```
+
+# With typescript
+```typescript
+
 ```
