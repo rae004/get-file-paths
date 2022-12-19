@@ -6,8 +6,8 @@ import { GetFilePathsOptions } from '../main.interface';
  * Returns a file path from a relative root within a full path
  *
  * e.g. a fullPath of /usr/src/app/src/forms/layouts/<relativeRoot>/public/index.html
- * *** would be returned as <relativeRoot>/public/index.html with opts.removeLeadingSlash = true (Default)
- * *** or /<relativeRoot>/public/index.html with opts.removeLeadingSlash = false
+ * *** would be returned as public/index.html with opts.removeLeadingSlash = true (Default)
+ * *** or /public/index.html with opts.removeLeadingSlash = false
  *
  * If lastIndexOfRelativeRoot = true we use lastIndexOf method to locate the index of relativeRoot
  *
