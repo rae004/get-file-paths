@@ -17,11 +17,11 @@
 ```typescript
 import { getFilePaths } from '@rae004/get-file-paths';
 
-const paths = getFilePaths('./')
+const paths = await getFilePaths('./')
 ```
 
 ### output:
-```json
+```
 [
   {
     fullPath: '/Users/daUser/projects/get-file-paths/package.json',
@@ -37,14 +37,14 @@ const paths = getFilePaths('./')
 ```typescript
 import { getFilePaths } from '@rae004/get-file-paths';
 
-const paths = getFilePaths('./', { 
+const paths = await getFilePaths('./', {
     relativeRoot: 'projects', 
     includeRelativeRoot: false 
 })
 ```
 
 ### output:
-```json
+```
 [
   {
     fullPath: '/Users/rae004/projects/get-file-paths/package.json',
@@ -58,18 +58,18 @@ const paths = getFilePaths('./', {
 ```typescript
 import { getFilePaths } from '@rae004/get-file-paths';
 
-const paths = getFilePaths('./', { 
+const paths = await getFilePaths('./', {
     relativeRoot: 'projects', 
     includeRelativeRoot: true 
 })
 ```
 
 ### output:
-```json
+```
 [
   {
     fullPath: '/Users/rae004/projects/get-file-paths/package.json',
-    relativePath: 'projects/get-file-paths/package.json',
+    relativePath: 'get-file-paths/package.json',
     fileName: 'package.json'
   }
 ]
