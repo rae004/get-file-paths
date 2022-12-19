@@ -1,6 +1,6 @@
 import { promises as fsp } from 'fs';
 import path from 'path';
-import { GetFilePathsOptions } from '../main.interface';
+import { GetFilePathsOptions } from '@/src/main.interface';
 
 /**
  * Returns a file path from a relative root within a full path

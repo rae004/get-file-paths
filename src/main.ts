@@ -1,10 +1,10 @@
-import { GetFilePathsOptions, GetFilePathsOutput } from './main.interface';
+import { GetFilePathsOptions, GetFilePathsOutput } from '@/src/main.interface';
 import {
     getFileName,
     getFilePathsGenerator,
     getRelativePath,
-} from './lib/utilities';
-import { GET_RELATIVE_PATH_DEFAULTS } from './lib/defaults';
+} from '@/src/lib/utilities';
+import { GET_RELATIVE_PATH_DEFAULTS } from '@/src/lib/defaults';
 
 /**
  * Take a directory path and return an array of objects with full & relative file paths for every file in that directory.

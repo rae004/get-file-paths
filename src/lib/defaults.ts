@@ -1,4 +1,4 @@
-import { GetFilePathsOptions } from '../main.interface';
+import { GetFilePathsOptions } from '@/src/main.interface';
 
 export const GET_RELATIVE_PATH_DEFAULTS: GetFilePathsOptions = {
     relativeRoot: __dirname,
